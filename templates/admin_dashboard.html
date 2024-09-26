@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 50%; 
+            text-align: center;
+        }
+
+        .rsidebar h2 {
+            margin-top: 0;
+        }
+
+        .rsidebar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .rsidebar li {
+            margin-bottom: 10px;
+            display: inline-block;
+            width: 49%; 
+        }
+
+        .rsidebar .redirect-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .rsidebar .redirect-button:hover {
+            background-color: lightcyan;
+        }   
+    </style>
+</head>
+<body>
+    <div class="rsidebar">
+        <h2>Welcome to the Admin Dashboard</h2>
+        <ul>
+            <div>
+                <li><a href="{{ url_for('categories_admin') }}" class="redirect-button">Categories</a></li>
+                <li><a href="{{ url_for('add_category') }}" class="redirect-button">Add Category</a></li>
+    
+            </div>
+            <div>
+                <li><a href="{{ url_for('edit_category') }}" class="redirect-button">Edit Category</a></li>
+                <li><a href="{{ url_for('delete_category') }}" class="redirect-button">Delete Category</a></li>
+            </div>
+            <div>
+                <li><a href="{{ url_for('add_product') }}" class="redirect-button">Add Product</a></li>
+                <li><a href="{{ url_for('edit_product') }}" class="redirect-button">Edit Product</a></li>
+            </div>
+            <div>
+                <li><a href="{{ url_for('delete_product') }}" class="redirect-button">Delete Product</a></li>
+                <li><a href="{{ url_for('see_users') }}" class="redirect-button">See Users</a></li>
+            </div>
+            <div>
+                <li><a href="{{ url_for('see_orders') }}" class="redirect-button">See Orders</a></li>
+                <li><a href="{{ url_for('logout') }}" class="redirect-button">Logout</a></li>
+            </div>
+            
+        </ul>
+    </div>
+</body>
+</html>

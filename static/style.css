@@ -1,0 +1,138 @@
+
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color: beige;
+    font-family: Arial, sans-serif;
+}
+
+
+.product-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    width: calc(20% - 20px); 
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    background-color: lightpink;
+    color: black;
+    text-decoration: none;
+}
+
+
+.product-details {
+    margin-top: 10px;
+}
+
+
+.counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.counter-btn {
+    border: none;
+    background-color: lightblue;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.add-to-cart {
+    background-color: lightgreen;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+
+.rsidebar {
+    background-color: lightpink;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.button-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+a.blink {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+a.blink:hover {
+    text-decoration: underline;
+}
+
+
+.navbar {
+    text-align: right;
+}
+
+.navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.navbar-list li {
+    display: inline; 
+    margin-left: 15px; 
+}
+
+.navbar-list li:first-child {
+    margin-left: 0; 
+}

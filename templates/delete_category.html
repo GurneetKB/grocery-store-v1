@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Category</title>
+    <link rel="stylesheet" href="style/style.css"> 
+    <style>
+        
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 10px;
+        }
+
+        button[type="submit"], a {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        button[type="submit"]:hover, a:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <div class="rsidebar">
+        <h2>Delete Category</h2>
+        <form method="POST">
+            <label for="category_name">Select Category to Delete:</label>
+            <select id="category_name" name="category_name" required>
+                <option value="" disabled selected>Select a category</option>
+                {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <button type="submit">Delete</button>
+            <a href="{{ url_for('categories') }}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

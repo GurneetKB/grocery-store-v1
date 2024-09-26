@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navigation</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: lightpink;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin-right: 10px;
+        }
+
+        .navbar a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-title">The OneStop Store</div>
+        <ul>
+            <li><a href="{{ url_for('admin_dashboard') }}">My Dashboard</a></li>
+            <li><a href="{{ url_for('categories_admin') }}">Categories</a></li>
+            <li><a href="{{ url_for('logout') }}" class="redirect-button">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>

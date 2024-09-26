@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products in Category</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        
+        body {
+            background-color: beige;
+            color: black;
+        }
+        
+        .product-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            width: calc(20% - 20px); 
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            background-color: lightpink;
+            color: black;
+            text-decoration: none;
+        }
+
+        .counter-btn, .add-to-cart {
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .counter-btn {
+            background-color: lightblue;
+        }
+
+        .add-to-cart {
+            background-color: lightgreen;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h2>{{ selected_category.category_name }} Products</h2>
+    <div class="product-container">
+        {% for product in selected_category.products %}
+            <div class="product-box">
+                <h3>{{ product.product_name }}</h3>
+                <p>Description: {{ product.product_descp }}</p>
+                <p>Price: Rs. {{ product.product_pr }}</p>
+                <div class="counter">
+                    <button class="counter-btn" onclick="changeQty('{{ product.product_id }}', -1)">-</button>
+                    <input type="number" class="qty-input" id="qty-{{ product.product_id }}" value="1" min="1" max="{{ product.product_qty }}">
+                    <button class="counter-btn" onclick="changeQty('{{ product.product_id }}', 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart('{{ product.product_id }}', '{{ product.product_name }}')">Add to Cart</button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function changeQty(product_id, change) {
+            var input = document.getElementById(`qty-${product_id}`);
+            var newValue = parseInt(input.value) + change;
+            if (newValue >= 1 && newValue <= parseInt(input.getAttribute('max'))) {
+                input.value = newValue;
+            }
+        }
+
+        function addToCart(product_id, product_name) {
+            var quantity = document.getElementById(`qty-${product_id}`).value;
+            fetch('/add_to_cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `product_id=${product_id}&quantity=${quantity}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data === "Product added to cart!") {
+                    alert(`Successfully added ${quantity} ${product_name} to your cart.`);
+                    location.reload();
+                } else {
+                    alert(data); 
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while adding the product to the cart.');
+            });
+        }
+    </script>    
+</body>
+</html>

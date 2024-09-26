@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Category</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+    
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <div class="rsidebar">
+        <h2>Edit Category</h2><br> 
+        <form method="POST">
+            <div class="form-group">
+                <label for="category_to_edit">Select Category to Edit:</label>
+                <select id="category_to_edit" name="original_category_name" required>
+                    <option value="" disabled selected>Select a category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="new_category_name">New Category Name:</label>
+                <input type="text" id="new_category_name" name="new_category_name" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Update Category</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

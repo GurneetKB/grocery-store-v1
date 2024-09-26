@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .order-history-container {
+            margin: 20px;
+        }
+
+        .order-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            background-color: lightpink;
+            list-style-type: none; 
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="content order-history-container">
+        <h1>Order History for {{ user.username }}</h1>
+        {% if orders %}
+            <ul class="order-list">
+                {% for order in orders %}
+                    <li class="order-item">
+                        <strong>Order ID:</strong> {{ order.order_id }}<br>
+                        <strong>Order Date:</strong> {{ order.order_date }}<br>
+                        <strong>Total Amount:</strong> Rs. {{ order.order_amount }}
+                        <ul class="order-items-list">
+                            {% for product_name, details in order.order_items.items() %}
+                                <li>{{ product_name }} - Quantity: {{ details[0] }} - Per Piece Price: Rs. {{ details[1] }} - Total Price: Rs. {{ details[2] }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No orders found for this user.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

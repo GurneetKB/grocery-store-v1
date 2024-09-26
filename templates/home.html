@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 50%; 
+            text-align: center;
+        }
+
+        .rsidebar h2 {
+            margin-top: 0;
+        }
+
+        .rsidebar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .rsidebar li {
+            margin-bottom: 10px;
+        }
+
+        .rsidebar .redirect-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: lightblue;
+            border: none;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .rsidebar .redirect-button:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="rsidebar">
+        <h2>Welcome to The OneStop Shop</h2>
+        <ul>
+            <li><a href="{{url_for('profile')}}" class="redirect-button">Profile</a></li>
+            <li><a href="{{ url_for('categories') }}" class="redirect-button">Categories</a></li>
+            <li><a href="/order-history/{{ user.user_id }}" class="redirect-button">Order History</a></li>
+            <li><a href="{{ url_for('cart') }}"  class="redirect-button">Cart</a><li>
+            <li><a href="/edit-profile/{{ user.user_id }}" class="redirect-button">Edit Profile</a></li>
+            <li><a href="{{ url_for('logout') }}" class="redirect-button">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>

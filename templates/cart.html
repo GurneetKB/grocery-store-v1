@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .cart-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px 0;
+            background-color: lightpink;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+        th {
+            background-color: lightgray;
+        }
+        p.total-amount {
+            text-align: right;
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-weight: bold;
+            font-size: 18px; 
+        }
+        form {
+            text-align : right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Cost per Item</th>
+                    <th>Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cart_item in cart_items %}
+                    <tr>
+                        <td>{{ cart_item.product_name }}</td>
+                        <td>{{ cart_item.cproduct_qty }}</td>
+                        <td>Rs. {{ cart_item.product_pr }}</td>
+                        <td>Rs. {{ cart_item.cproduct_qty * cart_item.product_pr }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="total-amount">Total Amount: Rs. {{ total_amount }}</p>
+        <form action="/place_order" method="POST">
+        <button type="submit">Place Order</button>
+    </form>
+    </div>
+</body>
+</html>

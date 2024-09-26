@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>See Orders</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .all-orders-container {
+            margin: 20px;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .order-table th, .order-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .order-table th {
+            background-color: lightpink;
+        }
+
+        .order-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="rsidebar">
+        {% include 'navbar_admin.html' %}
+        <h2>All Orders</h2><br>
+        <div class="all-orders-container">
+            {% if all_orders %}
+                <table class="order-table">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>User ID</th>
+                        <th>Order Items</th>
+                        <th>Order Amount</th>
+                    </tr>
+                    {% for order in all_orders %}
+                    <tr>
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.order_date }}</td>
+                        <td>{{ order.user_id }}</td>
+                        <td>{{ order.order_items }}</td>
+                        <td>Rs. {{ order.order_amount }}/-</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>No orders available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

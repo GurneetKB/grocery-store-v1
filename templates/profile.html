@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .profile-container {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            width: calc(50% - 40px); 
+            float: left;
+        }
+
+        .profile-container h2 {
+            margin-top: 0;
+        }
+
+        .edit-profile-btn {
+            background-color: lightgreen;
+            border: none;
+            color: black;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <h3>Welcome, {{ user.user_username }}</h3>
+        <p>Full Name: {{ user.user_name }}</p>
+        <p>Contact: {{ user.user_contact }}</p>
+        <p>Email: {{ user.user_email }}</p>
+        <p>Address: {{ user.user_address }}</p>
+        <p>City: {{ user.user_city }}</p>
+        
+    <button class="edit-profile-btn" onclick="editProfile()">Edit Profile</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<script>
+    function editProfile() {
+        window.location.href = "{{ url_for('edit_profile', user_id=user.user_id) }}";
+    }
+
+    function logout() {
+        window.location.href = "{{ url_for('main_page') }}";
+    }
+</script>
+</body>
+</html>

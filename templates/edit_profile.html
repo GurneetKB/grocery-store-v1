@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .edit-profile-container {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            width: calc(50% - 40px); 
+            float: left;
+        }
+
+        .edit-profile-container h2 {
+            margin-top: 0;
+        }
+
+        .update-profile-btn {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="edit-profile-container">
+        <h2>Edit Profile</h2>
+        <form method="post" action="{{ url_for('update_profile', user_id=user.user_id) }}">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.user_username }}"><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.user_email }}"><br>
+
+            <label for="name">Full Name:</label>
+            <input type="name" id="name" name="name" value="{{ user.user_name }}"><br>
+
+            <label for="contact">Contact:</label>
+            <input type="contact" id="contact" name="contact" value="{{ user.user_contact }}"><br>
+
+            <label for="address">Address:</label>
+            <input type="address" id="address" name="address" value="{{ user.user_address }}"><br>
+
+            <label for="city">City:</label>
+            <input type="city" id="city" name="city" value="{{ user.user_city }}"><br>
+
+            <button class="update-profile-btn" type="submit">Update Profile</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Categories</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+        }
+        
+        .product-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            width: calc(20% - 20px); 
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            background-color: lightpink;
+            color: black;
+            text-decoration: none;
+        }
+
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <h2>{{ selected_category.category_name }} Products</h2>
+    <div class="product-container">
+        {% for product in selected_category.products %}
+            <div class="product-box">
+                <h3>{{ product.product_name }}</h3>
+                <p>Description: {{ product.product_descp }}</p>
+                <p>Price: Rs. {{ product.product_pr }}</p>
+                <p>Quantity: {{ product.product_qty }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

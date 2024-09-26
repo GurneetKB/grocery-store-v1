@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <div class="rsidebar">
+        <h2>Edit Product</h2><br>
+        <form method="POST" action="{{ url_for('edit_product') }}">
+            <div class="form-group">
+                <label for="category">Select Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product">Select Product to Edit:</label>
+                <select id="product" name="product" required disabled>
+                    <option value="" disabled selected>Select a category first</option>
+                </select>
+            </div>
+            <div class="form-group" id="edit-form" style="display: none;">
+                <label for="product_name">Product Name:</label>
+                <input type="text" id="product_name" name="product_name" required>
+                <label for="product_description">Product Description:</label>
+                <input type="text" id="product_description" name="product_description" required>
+                <label for="product_quantity">Product Quantity:</label>
+                <input type="number" id="product_quantity" name="product_quantity" required>
+                <label for="product_price">Product Price:</label>
+                <input type="number" id="product_price" name="product_price" required step="0.01">
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categoryDropdown = document.getElementById("category");
+            const productDropdown = document.getElementById("product");
+            const editForm = document.getElementById("edit-form");
+            const productsByCategory = {
+                {% for category in categories %}
+                    "{{ category.category_id }}": [
+                        {% for product in category.products %}
+                            { "id": "{{ product.product_id }}", "name": "{{ product.product_name }}" },
+                        {% endfor %}
+                    ],
+                {% endfor %}
+            };
+    
+            categoryDropdown.addEventListener("change", function () {
+                const selectedCategoryId = categoryDropdown.value;
+                productDropdown.innerHTML = "<option value='' disabled selected>Select a product</option>";
+    
+                if (selectedCategoryId in productsByCategory) {
+                    const products = productsByCategory[selectedCategoryId];
+                    products.forEach(product => {
+                        const option = document.createElement("option");
+                        option.value = product.id;
+                        option.text = product.name;
+                        productDropdown.appendChild(option);
+                    });
+                    productDropdown.disabled = false;
+                    editForm.style.display = "none";
+                } else {
+                    productDropdown.disabled = true;
+                    editForm.style.display = "none";
+                }
+            });
+    
+            productDropdown.addEventListener("change", function () {
+                editForm.style.display = "block";
+            });
+        });
+    </script>    
+</body>
+</html>

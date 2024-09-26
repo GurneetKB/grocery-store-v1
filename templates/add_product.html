@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        body {
+            background-color: beige;
+            color: black;
+        }
+
+        .rsidebar {
+            background-color: lightpink;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        button[type="submit"]:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <div class="rsidebar">
+        <h2>Add Product</h2><br>
+        <form method="POST">
+            <label for="category_name">Select Category:</label>
+            <select id="category_name" name="category_name" required>
+                <option value="" disabled selected>Select a category</option>
+                {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                {% endfor %}
+            </select>
+            <h3>Add New Product Details</h3>
+            <label for="product_name">Product Name:</label>
+            <input type="text" id="product_name" name="product_name" required>
+            <label for="product_descp">Product Description:</label>
+            <input type="text" id="product_descp" name="product_descp" required>
+            <label for="product_qty">Product Quantity:</label>
+            <input type="number" id="product_qty" name="product_qty" required>
+            <label for="product_pr">Product Price:</label>
+            <input type="number" id="product_pr" name="product_pr" required>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>

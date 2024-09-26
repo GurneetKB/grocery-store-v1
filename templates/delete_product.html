@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        
+        body {
+            background-color: beige; 
+            color: black;
+        }
+
+        .rsidebar {
+            background-color: lightpink; 
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: lightblue;
+            border: none;
+            color: black;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar_admin.html' %}
+    <div class="rsidebar">
+        <h2>Delete Product</h2><br>
+        <form method="POST">
+            <div class="form-group">
+                <label for="category">Select Category:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    {% for category in categories %}
+                        <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product">Select Product to Delete:</label>
+                <select id="product" name="product" required disabled>
+                    <option value="" disabled selected>Select a category first</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Delete Product</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categoryDropdown = document.getElementById("category");
+            const productDropdown = document.getElementById("product");
+            const productsByCategory = {
+                {% for category in categories %}
+                    "{{ category.category_id }}": [
+                        {% for product in category.products %}
+                            { "id": "{{ product.product_id }}", "name": "{{ product.product_name }}" },
+                        {% endfor %}
+                    ],
+                {% endfor %}
+            };
+    
+            categoryDropdown.addEventListener("change", function () {
+                const selectedCategoryId = categoryDropdown.value;
+                productDropdown.innerHTML = "<option value='' disabled selected>Select a product</option>";
+    
+                if (selectedCategoryId in productsByCategory) {
+                    const products = productsByCategory[selectedCategoryId];
+                    products.forEach(product => {
+                        const option = document.createElement("option");
+                        option.value = product.id;
+                        option.text = product.name;
+                        productDropdown.appendChild(option);
+                    });
+                    productDropdown.disabled = false;
+                } else {
+                    productDropdown.disabled = true;
+                }
+            });
+        });
+    </script>    
+</body>
+</html>

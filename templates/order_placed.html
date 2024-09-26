@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Placed</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+
+        body {
+            background-color: beige;
+            color: black;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: lightpink;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: black;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="content">
+        <h1>Order Placed Successfully!</h1>
+        <h2>Order Details:</h2>
+        <ul>
+            <li><strong>User ID:</strong> {{ order.user_id }}</li>
+            <li><strong>Order Date:</strong> {{ order.order_date }}</li>
+        </ul>
+        <h2>Order Items:</h2>
+        <ul>
+            {% for product_name, details in order.order_items.items() %}
+            <li>{{ product_name }} - Quantity: {{ details[0] }} - Per Piece Price: Rs. {{ details[1] }} - Total Price: Rs. {{ details[2] }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Total Amount: Rs. {{ order.order_amount }}</h2>
+        <p>Your order has been successfully placed. Thank you for shopping with us!</p>
+    </div>
+</body>
+</html>

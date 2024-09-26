@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            background-color: beige;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: lightpink;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 70%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-box {
+            border: 1px solid #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: beige;
+            margin: 5px;
+        }
+        .button-box a {
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+    <title>Welcome to The OneStop Store</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to The OneStop Store!</h1>
+        <p>Buy the best groceries!</p>
+        <div class="button-container">
+            <div class="button-box">
+                <a href="{{ url_for('admin_sign_in') }}">Admin Sign In</a>
+            </div>
+            <div class="button-box">
+                <a href="{{ url_for('user_sign_in') }}">User Sign In</a>
+            </div>
+        </div>
+        <p>Not a User yet? Sign Up Now!</p>
+        <div class="button-container">
+            <div class="button-box">
+                <a href="{{ url_for('user_sign_up') }}">User Sign Up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

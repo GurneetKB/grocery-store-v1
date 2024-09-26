@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Categories</title>
+    <link rel="stylesheet" href="style/style.css">
+    <style>
+        
+        body {
+            background-color: beige;
+            color: black;
+        }
+        
+        .category-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            width: calc(20% - 20px); 
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            background-color: lightpink;
+            color: black;
+            text-decoration: none;
+        }
+        
+        
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="rsidebar">
+        <h2>All Categories</h2><br> 
+        <div class="category-container">
+            {% for category in categories %}
+            <a href="{{ url_for('products_by_category', category=category.category_name) }}" class="category-box">
+                <h3>{{ category.category_name }}</h3>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
