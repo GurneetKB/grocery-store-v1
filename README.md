@@ -83,15 +83,6 @@ python app.py
 ---
 
 
-## 🎥 Demo
-
-🔗 Grocery Store V1 Video
-[https://drive.google.com/file/d/1JtAdwTnDSeoRZCCQeD7UDVIS58IwZ933/view?usp=sharing](https://drive.google.com/file/d/1JtAdwTnDSeoRZCCQeD7UDVIS58IwZ933/view?usp=sharing)
-
-
----
-
-
 ## 👩‍💻 Author
 
 **Gurneet Kaur Bhuller**
